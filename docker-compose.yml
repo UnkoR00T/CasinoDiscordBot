@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  discord-bot:
+    build: .
+    container_name: discord-bot
+    restart: unless-stopped
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - NODE_ENV=production
+    volumes:
+      - ./data/db.sqlite:/app/db.sqlite
