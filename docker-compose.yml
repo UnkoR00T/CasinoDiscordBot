@@ -8,4 +8,4 @@ services:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
       - NODE_ENV=production
     volumes:
-      - ./data/db.sqlite:/app/db.sqlite
+      - ./db.sqlite:/app/db.sqlite
