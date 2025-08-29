@@ -56,7 +56,7 @@ export const EmbedsRegistry = {
     let embed = new EmbedBuilder().setTitle(title);
     if (transfer.after - transfer.before < 0) {
       embed
-        .setColor(0x00ff00)
+        .setColor(0xff0000)
         .setFields({
           name: `${user.displayName}`,
           value: codeBlock(
@@ -68,7 +68,7 @@ export const EmbedsRegistry = {
         .setFooter({ text: "₣ - Fifonż Coins" });
     } else {
       embed
-        .setColor(0xff0000)
+        .setColor(0x00ff00)
         .setFields({
           name: `${user.displayName}`,
           value: codeBlock(
