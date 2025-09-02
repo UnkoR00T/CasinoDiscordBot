@@ -79,4 +79,10 @@ export const commands = [
     .addNumberOption((option) =>
       option.setName("amount").setDescription("Bet amount").setRequired(true),
     ),
+  new SlashCommandBuilder()
+    .setName("slot")
+    .setDescription("Just a slot")
+    .addNumberOption((option) =>
+      option.setName("amount").setDescription("Bet amount").setRequired(true),
+    ),
 ];

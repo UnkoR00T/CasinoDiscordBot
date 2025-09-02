@@ -9,6 +9,7 @@ import { diceHandler } from "./src/handlers/commands/dice";
 import { stealHandler } from "./src/handlers/commands/steal";
 import { initClient } from "./src/initClient";
 import { blackjackHandler } from "./src/handlers/commands/blackjack";
+import { slotHandler } from "./src/handlers/commands/slot";
 const token: string | undefined = process.env.TOKEN;
 if (!token) {
   console.error("TOKEN not found!");
@@ -45,3 +46,4 @@ registry.registerCommand("work", workHandler);
 registry.registerCommand("dice", diceHandler);
 registry.registerCommand("steal", stealHandler);
 registry.registerCommand("blackjack", blackjackHandler);
+registry.registerCommand("slot", slotHandler);

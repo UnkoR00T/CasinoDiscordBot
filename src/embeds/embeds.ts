@@ -1,6 +1,7 @@
 import { codeBlock, EmbedBuilder, inlineCode, User } from "discord.js";
 import type { transferInfo } from "../types/transfer";
 import type { BlackjackGame, Deck } from "../types/blackjack";
+import { DEFAULT_SLOT_ENGINE, type SpinResult } from "../types/slots_engine";
 
 export const EmbedsRegistry = {
   ERRORS: {
@@ -151,5 +152,25 @@ export const EmbedsRegistry = {
       );
       return embed;
     }
+  },
+  SLOT_WINDOW: (game: SpinResult) => {
+    let embed = new EmbedBuilder()
+      .setTitle("Slot")
+      .setColor(0x0000ff)
+      .setFields({
+        name: "Spin render:",
+        value: codeBlock(DEFAULT_SLOT_ENGINE.renderWindow(game.window)),
+      });
+    game.lineWins.map((win) => {
+      embed.addFields({
+        name: `Symbol: ${win.symbol}`,
+        value: codeBlock(
+          "ansi",
+          `[2;31m[0m[2;31m[2;32m[2;36m +${Math.floor(win.payout)}`,
+        ),
+        inline: true,
+      });
+    });
+    return embed;
   },
 };
