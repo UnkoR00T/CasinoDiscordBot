@@ -21,15 +21,8 @@ const initClient = (token: string) => {
     try {
       let channel = await client.channels.fetch("1411019046597431336");
       let role = "1412417908172259379";
-      let res = await fetch(
-        "https://github.com/UnkoR00T/CasinoDiscordBot/commits/master",
-        {
-          method: "GET",
-        },
-      );
-      let changes = res.json();
       (channel as TextChannel).send({
-        content: `<@&${role}> Bot sie zrestartował, chyba Update. ${spoiler("Restart hajsu do 1000$")} \n Changes: \n ${changes.commit.message}`,
+        content: `<@&${role}> Bot sie zrestartował, chyba Update. ${spoiler("Restart hajsu do 1000$")}`,
       });
     } catch (err) {
       console.error(err);
