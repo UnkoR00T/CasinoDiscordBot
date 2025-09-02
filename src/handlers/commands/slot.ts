@@ -16,7 +16,7 @@ export const slotHandler = (interaction: ChatInputCommandInteraction) => {
     });
     return;
   }
-  let res = DEFAULT_SLOT_ENGINE.spin({ betPerLine: amount / 15, lines: 15 });
+  let res = DEFAULT_SLOT_ENGINE.spin({ betPerLine: amount / 10, lines: 10 });
   let delta = Math.floor(res.totalWin) - amount;
   let transfer: transferInfo | null;
   if (delta >= 0) {
