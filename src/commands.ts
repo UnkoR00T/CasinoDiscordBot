@@ -27,24 +27,16 @@ export const commands = [
   new SlashCommandBuilder()
     .setName("work")
     .setDescription("Way of getting money")
-    .addStringOption((option) =>
+    .addStringOption((option) => {
       option
         .setName("job_type")
         .setDescription("Choses type of job.")
-        .addChoices(
-          {
-            name: JOB_TYPES.MCDONALDS.displayname,
-            value: JOB_TYPES.MCDONALDS.name,
-          },
-          {
-            name: JOB_TYPES.DOG_SITTER.displayname,
-            value: JOB_TYPES.DOG_SITTER.name,
-          },
-          { name: JOB_TYPES.MAID.displayname, value: JOB_TYPES.MAID.name },
-          { name: JOB_TYPES.THIEF.displayname, value: JOB_TYPES.THIEF.name },
-        )
-        .setRequired(true),
-    ),
+        .setRequired(true);
+      Object.values(JOB_TYPES).map((j) =>
+        option.addChoices({ name: j.displayname, value: j.name }),
+      );
+      return option;
+    }),
   new SlashCommandBuilder()
     .setName("dice")
     .setDescription("Try your luck in dice roll")
