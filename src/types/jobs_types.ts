@@ -20,6 +20,18 @@ export const JOB_TYPES = {
     max: 7500,
   },
   THIEF: { name: "thief", displayname: "Thief", min: -12500, max: 25000 },
+  WHORE: {
+    name: "whore",
+    displayname: "Whore",
+    min: 5000,
+    max: 22500,
+  },
+  PIMP: {
+    name: "pimp",
+    displayname: "Pimp",
+    min: 7500,
+    max: 30000,
+  },
 } satisfies Record<
   string,
   { name: string; displayname: string; min: number; max: number }
