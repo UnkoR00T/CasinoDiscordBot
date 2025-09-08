@@ -88,8 +88,8 @@ export const commands = [
         .setRequired(false);
       Object.values(ITEMS).map((item) => {
         option.addChoices({
-          name: item.name,
-          value: item.displayname,
+          name: item.displayname,
+          value: item.name,
         });
       });
       return option;
