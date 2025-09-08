@@ -1,6 +1,7 @@
 import { SlashCommandBuilder } from "discord.js";
 import { JOB_TYPES } from "./types/jobs_types";
 import { DICE_TYPES } from "./types/dice_types";
+import { ITEMS } from "./types/inventory";
 
 export const commands = [
   new SlashCommandBuilder()
@@ -76,5 +77,43 @@ export const commands = [
     .setDescription("Just a slot")
     .addNumberOption((option) =>
       option.setName("amount").setDescription("Bet amount").setRequired(true),
+    ),
+  new SlashCommandBuilder()
+    .setName("shop")
+    .setDescription("Command for buying/selling items")
+    .addStringOption((option) => {
+      option
+        .setName("item_name")
+        .setDescription("Item's name")
+        .setRequired(false);
+      Object.values(ITEMS).map((item) => {
+        option.addChoices({
+          name: item.name,
+          value: item.displayname,
+        });
+      });
+      return option;
+    })
+    .addNumberOption((option) =>
+      option
+        .setName("amount")
+        .setDescription("Amount of item to buy/sell")
+        .setRequired(false),
+    )
+    .addStringOption((option) =>
+      option
+        .setName("action")
+        .setDescription("Buy/Sell")
+        .setRequired(false)
+        .addChoices(
+          {
+            name: "buy",
+            value: "Buy",
+          },
+          {
+            name: "sell",
+            value: "Sell",
+          },
+        ),
     ),
 ];

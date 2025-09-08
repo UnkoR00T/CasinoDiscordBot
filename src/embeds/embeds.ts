@@ -2,6 +2,7 @@ import { codeBlock, EmbedBuilder, inlineCode, User } from "discord.js";
 import type { transferInfo } from "../types/transfer";
 import type { BlackjackGame, Deck } from "../types/blackjack";
 import { DEFAULT_SLOT_ENGINE, type SpinResult } from "../types/slots_engine";
+import { ITEMS, type Item } from "../types/inventory";
 
 export const EmbedsRegistry = {
   ERRORS: {
@@ -172,5 +173,66 @@ export const EmbedsRegistry = {
       });
     });
     return embed;
+  },
+  SHOP: {
+    SHOP_DISPLAY: () => {
+      let embed = new EmbedBuilder().setTitle("Shop").setColor(0xff00ff);
+      Object.values(ITEMS).map((item) => {
+        embed.addFields({
+          name: item.displayname + ` - ${item.price}₣`,
+          value: item.description,
+          inline: true,
+        });
+      });
+      return embed;
+    },
+    SHOP_ITEM: (item: Item) => {
+      let embed = new EmbedBuilder()
+        .setTitle(`Item ${item.displayname}`)
+        .setColor(0xff00ff)
+        .addFields(
+          {
+            name: "Description:",
+            value: item.description,
+          },
+          {
+            name: "Price:",
+            value: item.price.toString(),
+          },
+          {
+            name: "Min:",
+            value: item.min.toString(),
+          },
+          {
+            name: "Max:",
+            value: item.max.toString(),
+          },
+        );
+      return embed;
+    },
+    SHOP_CHECKOUT: (item: Item, amount: number) => {
+      let embed = new EmbedBuilder()
+        .setTitle(`Item ${item.displayname}x${amount}`)
+        .setColor(0xff00ff)
+        .addFields(
+          {
+            name: "Description:",
+            value: item.description,
+          },
+          {
+            name: "Price:",
+            value: (item.price * amount).toString(),
+          },
+          {
+            name: "Min:",
+            value: (item.min * amount).toString(),
+          },
+          {
+            name: "Max:",
+            value: (item.max * amount).toString(),
+          },
+        );
+      return embed;
+    },
   },
 };

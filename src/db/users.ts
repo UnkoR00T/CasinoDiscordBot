@@ -1,5 +1,6 @@
 import { db } from "../db";
 import { BALANCE_DELTA } from "../types/balance_delta";
+import type { Inventory } from "../types/inventory";
 import type { transferInfo } from "../types/transfer";
 import type { DBUser } from "../types/user";
 
@@ -50,3 +51,7 @@ export const UsersController = {
   setBalance,
   changeAmount,
 };
+/*
+const getInventory = (id: string): Inventory => {
+  db.query<string, [string]>("SELECT inventory FROM users WHERE id = ?", [id]);
+};*/
