@@ -107,13 +107,22 @@ export const commands = [
         .setRequired(false)
         .addChoices(
           {
-            name: "buy",
-            value: "Buy",
+            name: "Buy",
+            value: "buy",
           },
           {
-            name: "sell",
-            value: "Sell",
+            name: "Sell",
+            value: "sell",
           },
         ),
+    ),
+  new SlashCommandBuilder()
+    .setName("inventory")
+    .setDescription("Inventory")
+    .addUserOption((option) =>
+      option
+        .setName("target")
+        .setDescription("Selects target")
+        .setRequired(false),
     ),
 ];

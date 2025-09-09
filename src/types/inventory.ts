@@ -1,4 +1,4 @@
-type Inventory = InventoryItem[];
+type Inventory = Array<InventoryItem>;
 type InventoryItem = { item: Item; quantity: number };
 type Item = {
   name: string;

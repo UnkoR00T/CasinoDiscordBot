@@ -2,7 +2,7 @@ import { codeBlock, EmbedBuilder, inlineCode, User } from "discord.js";
 import type { transferInfo } from "../types/transfer";
 import type { BlackjackGame, Deck } from "../types/blackjack";
 import { DEFAULT_SLOT_ENGINE, type SpinResult } from "../types/slots_engine";
-import { ITEMS, type Item } from "../types/inventory";
+import { ITEMS, type Inventory, type Item } from "../types/inventory";
 
 export const EmbedsRegistry = {
   ERRORS: {
@@ -186,6 +186,17 @@ export const EmbedsRegistry = {
       });
       return embed;
     },
+    INVENTORY_DISPLAY: (inv: Inventory) => {
+      let embed = new EmbedBuilder().setTitle("Inventory").setColor(0xff00ff);
+      inv.map((item) => {
+        embed.addFields({
+          name: item.item.displayname + ` x${item.quantity}`,
+          value: `Value: ${item.item.price * item.quantity}₣ \nMin: ${item.item.min * item.quantity}₣ \nMax: ${item.item.max * item.quantity}₣ `,
+          inline: true,
+        });
+      });
+      return embed;
+    },
     SHOP_ITEM: (item: Item) => {
       let embed = new EmbedBuilder()
         .setTitle(`Item ${item.displayname}`)
@@ -197,22 +208,22 @@ export const EmbedsRegistry = {
           },
           {
             name: "Price:",
-            value: item.price.toString(),
+            value: item.price.toString() + "₣",
           },
           {
             name: "Min:",
-            value: item.min.toString(),
+            value: item.min.toString() + "₣",
           },
           {
             name: "Max:",
-            value: item.max.toString(),
+            value: item.max.toString() + "₣",
           },
         );
       return embed;
     },
     SHOP_CHECKOUT: (item: Item, amount: number) => {
       let embed = new EmbedBuilder()
-        .setTitle(`Item ${item.displayname}x${amount}`)
+        .setTitle(`Item ${item.displayname} x${amount}`)
         .setColor(0xff00ff)
         .addFields(
           {
@@ -221,15 +232,15 @@ export const EmbedsRegistry = {
           },
           {
             name: "Price:",
-            value: (item.price * amount).toString(),
+            value: (item.price * amount).toString() + "₣",
           },
           {
             name: "Min:",
-            value: (item.min * amount).toString(),
+            value: (item.min * amount).toString() + "₣",
           },
           {
             name: "Max:",
-            value: (item.max * amount).toString(),
+            value: (item.max * amount).toString() + "₣",
           },
         );
       return embed;
